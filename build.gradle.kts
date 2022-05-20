@@ -2,9 +2,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.6.21"
+    application
 }
 
-group = "org.fruitsalad"
+application {
+    mainClass.set("MainKt")
+}
+
+//group = "org.fruitsalad"
 version = "1.0-SNAPSHOT"
 
 repositories {
