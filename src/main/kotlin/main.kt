@@ -3,20 +3,20 @@ import fruitObj.*
 val stands: List<FruitStand> = listOf(
     FruitStand("Gbg Stand",
         setOf(
-            Product("Cherry Basket", 5),
-            Product("Peach Basket", 3)
+            Basket("Cherry Basket", 5, setOf( FruitInfo(Fruits.CHERRY, 20) )),
+            Basket("Peach Basket", 3,  setOf( FruitInfo(Fruits.PEACH, 10) ))
         )
     ),
     FruitStand("Partille Stand",
         setOf(
-            Product("Cherry Basket", 9),
-            Product("Peach Basket", 2)
+            Basket("Cherry Basket", 9, setOf( FruitInfo(Fruits.CHERRY, 20) )),
+            Basket("Peach Basket", 2, setOf( FruitInfo(Fruits.PEACH, 10) ))
         )
     ),
     FruitStand("Kotlin Stand",
         setOf(
-            Product("Cherry Basket", 6),
-            Product("Peach Basket", 1)
+            Basket("Cherry Basket", 6, setOf( FruitInfo(Fruits.CHERRY, 20) )),
+            Basket("Peach Basket", 1, setOf( FruitInfo(Fruits.PEACH, 10) ))
         )
     )
 )

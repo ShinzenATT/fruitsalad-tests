@@ -1,10 +1,10 @@
 package fruitObj
 
-class FruitStand(val name: String, val products: Set<Product>) {
+class FruitStand(val name: String, val baskets: Set<Basket>) {
     val totalCost: Int
-        get() = products.sumOf { it.price }
+        get() = baskets.sumOf { it.price }
 
     override fun toString(): String {
-        return "$name $products: $totalCost kr"
+        return "$name $baskets: $totalCost kr"
     }
 }
