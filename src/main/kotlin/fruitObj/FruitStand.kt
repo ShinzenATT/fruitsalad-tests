@@ -1,6 +1,6 @@
 package fruitObj
 
-class FruitStand(val name: String, val baskets: Set<Basket>) {
+class FruitStand(val id: Int, val name: String, val baskets: Set<Basket>) {
     val totalCost: Int
         get() = baskets.sumOf { it.price }
 
