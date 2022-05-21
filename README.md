@@ -1,5 +1,6 @@
 # Running the project
 [![wakatime](https://wakatime.com/badge/user/53fb229b-d6c8-4ee4-8592-c1aa087e5019/project/b35736fb-3758-4182-bba3-27a05e7b5a77.svg)](https://wakatime.com/badge/user/53fb229b-d6c8-4ee4-8592-c1aa087e5019/project/b35736fb-3758-4182-bba3-27a05e7b5a77)
+(Includes idle time when IDE is in background)
 
 For linux/unix systems `./gradlew` is used for most commands while for Windows systems `gradlew.bat` is used.
 
