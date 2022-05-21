@@ -1,5 +1,9 @@
 import fruitObj.*
 
+/**
+ * Example data of available fruit stands
+ * @see FruitStand
+ */
 val stands: List<FruitStand> = listOf(
     FruitStand(0, "Gbg Stand",
         setOf(
@@ -33,11 +37,12 @@ val stands: List<FruitStand> = listOf(
 
 fun main() {
     val s = stands.firstOrNull{ it.baskets.any{ b ->
+        // search for a stand that has a basket with pears and other fruits
         b.contents.any{ f-> f.fruit == Fruits.PEAR } && b.contents.size > 1
     } }
 
     if(s != null) {
-        val b = s.baskets.first{ it.contents.any{ f-> f.fruit == Fruits.PEAR } }
+        val b = s.baskets.first{ it.contents.any{ f-> f.fruit == Fruits.PEAR } } // extract basket with pears
         println(" stand with id ${s.id} has a mixed basket with pear with price ${b.price}kr")
     } else {
         println("No stand with basket with pear mixed with other fruits")
