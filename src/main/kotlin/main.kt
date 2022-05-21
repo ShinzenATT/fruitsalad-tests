@@ -1,26 +1,45 @@
 import fruitObj.*
 
 val stands: List<FruitStand> = listOf(
-    FruitStand("Gbg Stand",
+    FruitStand(0, "Gbg Stand",
         setOf(
             Basket("Cherry Basket", 5, setOf( FruitInfo(Fruits.CHERRY, 20) )),
             Basket("Peach Basket", 3,  setOf( FruitInfo(Fruits.PEACH, 10) ))
         )
     ),
-    FruitStand("Partille Stand",
+    FruitStand(1, "Partille Stand",
         setOf(
             Basket("Cherry Basket", 9, setOf( FruitInfo(Fruits.CHERRY, 20) )),
             Basket("Peach Basket", 2, setOf( FruitInfo(Fruits.PEACH, 10) ))
         )
     ),
-    FruitStand("Kotlin Stand",
+    FruitStand(2, "Kotlin Stand",
         setOf(
             Basket("Cherry Basket", 6, setOf( FruitInfo(Fruits.CHERRY, 20) )),
             Basket("Peach Basket", 1, setOf( FruitInfo(Fruits.PEACH, 10) ))
+        )
+    ),
+    FruitStand(3, "Java Stand",
+        setOf(
+            Basket("Summer Basket", 10, setOf( FruitInfo(Fruits.PEAR, 7), FruitInfo(Fruits.PEACH, 7) ))
+        )
+    ),
+    FruitStand(4, "Python Stand",
+        setOf(
+            Basket("Spring Basket", 10, setOf( FruitInfo(Fruits.CHERRY, 12), FruitInfo(Fruits.PEACH, 7) ))
         )
     )
 )
 
 fun main() {
-    println( stands.minByOrNull { it.totalCost } ?: "No fruit stands available" )
+    val s = stands.firstOrNull{ it.baskets.any{ b ->
+        b.contents.any{ f-> f.fruit == Fruits.PEAR } && b.contents.size > 1
+    } }
+
+    if(s != null) {
+        val b = s.baskets.first{ it.contents.any{ f-> f.fruit == Fruits.PEAR } }
+        println(" stand with id ${s.id} has a mixed basket with pear with price ${b.price}kr")
+    } else {
+        println("No stand with basket with pear mixed with other fruits")
+    }
 }
