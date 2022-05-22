@@ -1,6 +1,22 @@
 import fruitObj.*
 
+/**
+ * Starts the program. Buys baskets for Pelle, Kajsa and their friend while also printing out the stats.
+ */
 fun main() {
+    val pelleKajsaP = Purchases()
+    findCherNPreach(pelleKajsaP)
+    findMixPear(pelleKajsaP)
+
+    println("-------------------- PELLE & KAJSA Purchases --------------------")
+    printStats(pelleKajsaP)
+
+    val friendP = Purchases()
+    findCherNPreach(friendP)
+    findMixPear(friendP)
+
+    println("\n-------------------- FRIEND Purchases --------------------")
+    printStats(friendP)
 
 }
 
@@ -13,8 +29,8 @@ fun findCherNPreach(purchases: Purchases){
         b.contents.any { f -> f.fruit == Fruits.CHERRY || f.fruit == Fruits.PEACH } && b.contents.size == 1
     } }.minByOrNull { it.totalCost }
     if(s != null) {
-        purchases.add(s.baskets.first{ it.contents.any { f -> f.fruit == Fruits.CHERRY } }, s) // Purchase cherry basket
-        purchases.add(s.baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEACH } }, s) // Purchase peach basket
+        purchases.purchase(s.baskets.first{ it.contents.any { f -> f.fruit == Fruits.CHERRY } }, s) // Purchase cherry basket
+        purchases.purchase(s.baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEACH } }, s) // Purchase peach basket
     }
 }
 
@@ -28,7 +44,7 @@ fun findMixPear(purchases: Purchases){
     } }
 
     if(s2 != null) {
-        purchases.add(s2.baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEAR } }, s2) // Purchase mixed pear basket
+        purchases.purchase(s2.baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEAR } }, s2) // Purchase mixed pear basket
     }
 }
 
@@ -43,7 +59,7 @@ fun printStats(purchases: Purchases){
 
     println(
         "During the trip you bought ${purchases.size} baskets from $uniqueStands different stands and ${fruitSet.size} different fruits.\n" +
-                "The total cost was ${purchases.sumOf { it.basket.price }}. And the following fruits were purchased are $fruitSet.\n" +
+                "The total cost was ${purchases.sumOf { it.basket.price }}kr. And the following fruits that were purchased are $fruitSet.\n" +
                 "Here is the list of purchases:"
     )
 
