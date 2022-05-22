@@ -3,7 +3,7 @@ package fruitObj
 /**
  * A list object for containing purchased baskets
  */
-object Purchases: MutableList<Purchases.BasketEntry> by ArrayList()
+class Purchases: MutableList<Purchases.BasketEntry> by ArrayList()
 {
     /**
      * Adds a basket to the list of purchases
