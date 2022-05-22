@@ -57,6 +57,16 @@ fun main() {
         Purchases.add(s2.baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEAR } }, s2) // Purchase mixed pear basket
     }
 
+    // Unique fruits purchased
+    val fruitSet = Purchases.map { it.basket.contents }.flatten().map { it.fruit }.toSet()
+    // Unique fruit stands purchased from
+    val uniqueStands = Purchases.map { it.srcStand }.toSet().size
 
-    println(Purchases)
+    println(
+        "During the trip you bought ${Purchases.size} baskets from $uniqueStands different stands and ${fruitSet.size} different fruits.\n" +
+        "The total cost was ${Purchases.sumOf { it.basket.price }}. And the following fruits were purchased are $fruitSet.\n" +
+        "Here is the list of purchases:"
+    )
+
+    Purchases.forEach { println(it) }
 }

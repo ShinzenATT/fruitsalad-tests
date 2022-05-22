@@ -1,19 +1,9 @@
 package fruitObj
 
 /**
- * A data class for containing purchased baskets while keeping track of which stands they were purchased from
- * @param basket Purchased Basket
- * @param srcStand The stand the basket was purchased from
- */
-private data class BasketEntry(val basket: Basket, val srcStand: FruitStand)
-{
-    override fun  toString(): String = "Basket that contains ${basket.contents.map { it.fruit.name }} with cost of ${basket.price}kr  from ${srcStand.name}"
-}
-
-/**
  * A list object for containing purchased baskets
  */
-object Purchases: MutableList<BasketEntry> by ArrayList()
+object Purchases: MutableList<Purchases.BasketEntry> by ArrayList()
 {
     /**
      * Adds a basket to the list of purchases
@@ -26,4 +16,14 @@ object Purchases: MutableList<BasketEntry> by ArrayList()
     }
 
     override fun toString(): String = "Purchases: \n" + joinToString("\n") { it.toString() }
+
+    /**
+     * A data class for containing purchased baskets while keeping track of which stands they were purchased from
+     * @param basket Purchased Basket
+     * @param srcStand The stand the basket was purchased from
+     */
+    data class BasketEntry(val basket: Basket, val srcStand: FruitStand)
+    {
+        override fun  toString(): String = "${basket.name} that contains ${basket.contents.map { it.fruit.name }} with cost of ${basket.price}kr from ${srcStand.name}"
+    }
 }
