@@ -35,16 +35,22 @@ val stands: List<FruitStand> = listOf(
     )
 )
 
-fun main() {
-    val s = stands.firstOrNull{ it.baskets.any{ b ->
-        // search for a stand that has a basket with pears and other fruits
-        b.contents.any{ f-> f.fruit == Fruits.PEAR } && b.contents.size > 1
-    } }
+private data class BasketEntry(val basket: Basket, val srcStand: FruitStand)
+{
+    override fun  toString(): String = "Basket that contains ${basket.contents.map { it.fruit.name }} with cost of ${basket.price}kr  from ${srcStand.name}"
+}
 
-    if(s != null) {
-        val b = s.baskets.first{ it.contents.any{ f-> f.fruit == Fruits.PEAR } } // extract basket with pears
-        println(" stand with id ${s.id} has a mixed basket with pear with price ${b.price}kr")
-    } else {
-        println("No stand with basket with pear mixed with other fruits")
-    }
+fun main() {
+    val purchases = listOf(
+        // Cherry basket from kotlin stand
+        BasketEntry(stands[2].baskets.first{ it.contents.any { f -> f.fruit == Fruits.CHERRY }}, stands[2]),
+        // Peach basket from kotlin stand
+        BasketEntry(stands[2].baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEACH }}, stands[2]),
+        // Summer basket from java stand
+        BasketEntry(stands[3].baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEAR }}, stands[3])
+    )
+
+    println("Purchased baskets:")
+    purchases.forEach { println(it) }
+
 }
