@@ -38,16 +38,12 @@ val stands: List<FruitStand> = listOf(
 
 
 fun main() {
-    val purchases = listOf(
-        // Cherry basket from kotlin stand
-        BasketEntry(stands[2].baskets.first{ it.contents.any { f -> f.fruit == Fruits.CHERRY }}, stands[2]),
-        // Peach basket from kotlin stand
-        BasketEntry(stands[2].baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEACH }}, stands[2]),
-        // Summer basket from java stand
-        BasketEntry(stands[3].baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEAR }}, stands[3])
-    )
+    // Cherry basket from kotlin stand
+    Purchases.add(stands[2].baskets.first{ it.contents.any { f -> f.fruit == Fruits.CHERRY }}, stands[2])
+    // Peach basket from kotlin stand
+    Purchases.add(stands[2].baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEACH }}, stands[2])
+    // Summer basket from java stand
+    Purchases.add(stands[3].baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEAR }}, stands[3])
 
-    println("Purchased baskets:")
-    purchases.forEach { println(it) }
-
+    println(Purchases)
 }
