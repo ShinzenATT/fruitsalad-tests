@@ -6,7 +6,7 @@ package fruitObj
  * @param name the name of the fruit stand
  * @param baskets  a set of [Basket]s available for purchase
  */
-class FruitStand(val id: Int, val name: String, val baskets: Set<Basket>) {
+class FruitStand(val id: Int, val name: String, val baskets: MutableSet<Basket>) {
     /**
      * @return the total price of all the baskets available in the fruit stand
      */
