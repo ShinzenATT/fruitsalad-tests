@@ -10,9 +10,27 @@ class Purchases: MutableList<Purchases.BasketEntry> by ArrayList()
      * @param basket Purchased Basket
      * @param srcStand The stand the basket was purchased from
      */
-    fun add(basket: Basket, srcStand: FruitStand)
+    private fun add(basket: Basket, srcStand: FruitStand)
     {
         add(BasketEntry(basket, srcStand))
+    }
+
+    /**
+     * Adds a basket to the list of purchases and removes it from the stand it was purchased from
+     * @param basket Purchased Basket
+     * @param srcStand The stand the basket was purchased from
+     * @throws NoSuchElementException if the basket is not in the stand or the stand is not in the list
+     * @see Stands
+     */
+    fun purchase(basket: Basket, srcStand: FruitStand)
+    {
+        val success = Stands.first { it == srcStand }.baskets.remove(basket)
+
+        if (!success) {
+            throw NoSuchElementException("Basket not found in stand")
+        }
+
+        add(basket, srcStand)
     }
 
     override fun toString(): String = "Purchases: \n" + joinToString("\n") { it.toString() }
