@@ -38,12 +38,25 @@ val stands: List<FruitStand> = listOf(
 
 
 fun main() {
-    // Cherry basket from kotlin stand
-    Purchases.add(stands[2].baskets.first{ it.contents.any { f -> f.fruit == Fruits.CHERRY }}, stands[2])
-    // Peach basket from kotlin stand
-    Purchases.add(stands[2].baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEACH }}, stands[2])
-    // Summer basket from java stand
-    Purchases.add(stands[3].baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEAR }}, stands[3])
+    // Find a fruit stand with a cherry basket and peach basket for lowest price
+    val s = stands.filter{ it.baskets.any { b ->
+        b.contents.any { f -> f.fruit == Fruits.CHERRY || f.fruit == Fruits.PEACH } && b.contents.size == 1
+    } }.minByOrNull { it.totalCost }
+    if(s != null) {
+        Purchases.add(s.baskets.first{ it.contents.any { f -> f.fruit == Fruits.CHERRY } }, s) // Purchase cherry basket
+        Purchases.add(s.baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEACH } }, s) // Purchase peach basket
+    }
+
+
+    // search for a stand that has a basket with pears and other fruits
+    val s2 = stands.firstOrNull{ it.baskets.any{ b ->
+        b.contents.any{ f-> f.fruit == Fruits.PEAR } && b.contents.size > 1
+    } }
+
+    if(s2 != null) {
+        Purchases.add(s2.baskets.first{ it.contents.any { f -> f.fruit == Fruits.PEAR } }, s2) // Purchase mixed pear basket
+    }
+
 
     println(Purchases)
 }
